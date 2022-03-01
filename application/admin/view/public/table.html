@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>管理平台</title>
+    <link href="__IMG__/Public/favicon.ico" type="image/x-icon" rel="shortcut icon">
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+</head> 
+<body style="padding:10px">    
+
+<h4>{$title}</h4>
+<table class="table table-striped table-bordered table-hover">
+      <thead>
+          <tr>          	  
+              <th>姓名</th>
+              <th>手机号</th>
+          </tr>
+      </thead>
+      <tbody>
+      	  {volist name="data" id="vo" empty="$empty"}
+      	  <tr>
+              <td>{$vo.realname}</td>
+              <td>{$vo.phone}</td>
+          </tr>
+          {/volist}
+      </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,16 @@
+{case value="text"}
+	<div class="form-group item_{$form.name} {$form.extra.class}">
+		<label class="col-sm-1 left control-label">{$form.title}：</label>
+		<div class="col-sm-4 right">
+        	{if condition="empty($form.value)"}
+			<input type="text" class="form-control input text" name="{$form.name}" value="" {$form.extra.attr}>
+            {else/}
+            <input type="text" class="form-control input text" name="{$form.name}" value="{$form.value}" {$form.extra.attr}>
+            {/if}
+			{notempty name="form.tip"}
+				<span class="check-tips text-muted small">{$form.tip}</span>
+			{/notempty}
+		</div>
+	</div>
+	<div class="hr-line-dashed"></div>
+{/case}

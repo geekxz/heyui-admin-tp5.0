@@ -1,0 +1,48 @@
+{case value="kindeditor"}
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+        <label class="col-sm-1 left control-label">{$form.title}：</label>
+        <div class="col-sm-6 right">
+        	{if condition="empty($form.value)"}
+            <textarea name="{$form.name}" id="kindeditor" class="form-control" {$form.extra.attr} style="height:500px;">
+               
+            </textarea>      
+            {else/}
+            <textarea name="{$form.name}" id="kindeditor" class="form-control" {$form.extra.attr} style="height:500px;">
+               {$form.value}
+            </textarea> 
+            {/if}    
+            
+    <script charset="utf-8" src="/public/kindeditor-4.1.10/kindeditor.js"></script>
+	<script charset="utf-8" src="/public/kindeditor-4.1.10/lang/zh_CN.js"></script>
+	<script charset="utf-8" src="/public/kindeditor-4.1.10/plugins/code/prettify.js"></script>
+	<script>
+		KindEditor.ready(function(K) {
+			var editor1 = K.create('textarea[name="{$form.name}"]', {
+				cssPath : '/public/kindeditor-4.1.10/plugins/code/prettify.css',
+				uploadJson : '/public/kindeditor-4.1.10/php/upload_json.php',
+				fileManagerJson : '/public/kindeditor-4.1.10/php/file_manager_json.php',
+				allowFileManager : true,
+				afterCreate : function() {
+					var self = this;
+					K.ctrl(document, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+					K.ctrl(self.edit.doc, 13, function() {
+						self.sync();
+						K('form[name=example]')[0].submit();
+					});
+				}
+			});
+			prettyPrint();
+		});
+	</script>
+        </div>
+    </div>
+	<div class="hr-line-dashed"></div>
+{/case}
+
+
+
+
+

@@ -1,0 +1,136 @@
+{case value="pic"}
+   	<link rel="stylesheet" type="text/css" href="__JS__/uplode/webuploader.css">	
+	<script src="__JS__/uplode/jquery-1.7.2.min.js"></script>
+	<script src="__JS__/uplode/webuploader.min.js"></script>
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+		<label class="col-sm-1 left control-label">{$form.title}：</label>
+		<div class="col-sm-4 right">
+			<input type="hidden" name="up_img" value="" valss="file"/>
+            <div class="hr-line-dashed"></div>
+	        <div id="uploader" class="wu-example form-group" >
+                <!--用来存放文件信息-->
+                <div id="thelist" class="uploader-list "></div>
+                <div class="btns" style="margin-bottom:10px" >
+                    <div id="picker" style="float: left;margin-right: 20px;">选择文件</div> 
+                    <div id="up_img"  class="btn btn-success">开始上传</div>
+                    
+                </div>
+               
+                {if condition="!empty($form.value)"}
+				   <div class="del">
+				   
+						<div style="height:130px">
+							<img style="height:100%; width:100%" src="http://www.geekxz.com{$form.value}">						
+						</div>
+						<div class="del_img" onclick="del($(this))">删除</div>
+					</div>
+                {/if}           
+            </div>
+	   </div>
+	</div>	
+	<div class="hr-line-dashed"></div>
+	<style>
+		#up_img{
+			width:110px;
+			height:38px;
+			text-align: center;
+			line-height: 26px;
+			border-radius: 3px;
+		}
+		.del{
+			height:100%;
+			border:1px silod #ddd;
+			float:left;
+			margin-right:10px;
+			 
+		}		
+		.del_img{
+			height:30px;
+			background:rgba(235,157,158,1.00);
+			text-align: center;
+			line-height: 30px;
+		}
+		
+	</style>
+	<script type="text/javascript">
+	
+		var uploader = WebUploader.create({	
+			// swf文件路径
+			swf:  './js/Uploader.swf',	
+			// 文件接收服务端。
+			//server: 'http://www.geekxz.com/shop/uplode/index',
+			server: '__URLS__/admin/uplode/index',
+			// 选择文件的按钮。可选。
+			// 内部根据当前运行是创建，可能是input元素，也可能是flash.
+			pick:  {
+                id: '#picker',
+                multiple:false, 
+                label: '点击选择图片'
+            },	
+			// 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+			resize: false,
+			// 只能上传单张图片
+			fileNumLimit: 1
+		});
+		// 当有文件被添加进队列的时候
+		uploader.on( 'fileQueued', function( file ) {
+			
+			var $list = $('#thelist');		  
+			if (handler == "Q_EXCEED_NUM_LIMIT") {
+				alert("只能上传一张图片");
+			}
+		});
+	
+		$('#up_img').on('click',function(){
+			uploader.upload();
+		});
+	
+		//文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			var $li = $( '#'+file.id ),
+				$percent = $li.find('.progress .progress-bar');	
+			// 避免重复创建
+			if ( !$percent.length ) {
+				$percent = $('<div class="progress progress-striped active">' +
+				  '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+				  '</div>' +
+				'</div>').appendTo( $li ).find('.progress-bar');
+			}
+	
+			$li.find('p.state').text('上传中');
+	
+			$percent.css( 'width', percentage * 100 + '%' );
+		});
+		uploader.on( 'uploadSuccess', function( file,response ) {			
+			console.log(response['_raw']['data']);
+			$( '#'+file.id ).find('p.state').html("上成功");
+			$('#up_img').parent().after("\
+				<div  class='del' style='height:100%;border:1px silod #ddd;float:left;margin-right:10px;'>\
+					<div style='height:130px'>\
+						<img width='100%' height='100%' src='http://www.geekxz.com"+response['_raw']+"'>\
+					</div>\
+					<input type='hidden' name='{$form.name}[]' value="+response['_raw']+">\
+					<div style='height:30px;background:rgba(235,157,158,1.00);text-align: center;line-height: 30px;' onclick='del($(this))'>删除</div></div>");
+			var filename = $('.file').val()+'#'+response['_raw'];
+			$('.file').val(filename);	
+		});
+	
+		uploader.on( 'uploadError', function( file ) {
+			$( '#'+file.id ).find('p.state').text('上传出错');
+		});
+	
+		uploader.on( 'uploadComplete', function( file ) {
+			$( '#'+file.id ).find('.progress').fadeOut();
+		});
+	
+		$('.del').mouseover(function(){		
+			
+			
+		});
+		function del(a){
+			a.parents('.del').remove();
+			
+		}
+	</script>
+{/case}
+

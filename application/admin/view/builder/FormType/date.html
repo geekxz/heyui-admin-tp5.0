@@ -1,0 +1,31 @@
+{case value="date"}
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+        <label class="col-sm-1 left control-label">{$form.title}：</label>
+        <div class="col-sm-4 right">
+            <input type="text"  class="col-sm-4 form-control input time form_datetime" name="{$form.name}" value="{notempty name='[type]form.value'}{$[type]form.value}{/notempty}" {$form.extra.attr}>
+			
+    		<link href="/public/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+			<script type="text/javascript" src="/public/datepicker/jquery-1.8.3.min.js" charset="UTF-8"></script>
+			<script type="text/javascript" src="/public/datepicker/bootstrap.min.js"></script>
+            
+			<script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+            <script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+			 <script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+			<script type="text/javascript">
+               
+                    $(".form_datetime").datetimepicker({
+					   
+					   format      : 'yyyy-mm-dd',
+                        autoclose   : true,
+                        minView     : 'month',
+                        todayBtn    : 'linked',
+                        language    : 'zh-CN',
+                        fontAwesome : true
+                    });
+               
+            </script>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>			
+{/case}
+

@@ -1,0 +1,168 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}
+<style type="text/css">
+    th,td{
+        height: 40px;
+    }
+</style>
+{/block}
+{block name="body"}
+
+<div class="wrapper wrapper-content">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">            
+            <div class="row">
+                <p class="gk-list-title">编辑banner</p>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    
+                    <div class="ibox-content" style="text-align: center;">
+                        <form method="post" class="form-horizontal" action="/Admin/banner/edit" enctype="multipart/form-data">
+                            
+                            <input type="hidden"  name="id" value="{$info['id']}" required="">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">标题</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="title" required value="{$info.title}" placeholder="标题"></div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">位置</label>
+                                <div class="col-sm-3">
+                                    <select name="banner_id" class="form-control m-b"> 
+                                        <option value=''>请选择：</option>
+                                        {volist name="res" id="vo"}
+                                        <option value="{$vo.id}" {if condition="$info.banner_id == $vo.id"}selected{/if}>{$vo.name}</option>
+                                        {/volist}
+                                        </select>                                  
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">跳转</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="key_word" required value="{$info.key_word}" placeholder="商品写id,不是商品写网址"></div>
+                            </div>
+                            
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">类型</label>
+                                <div class="col-sm-2">  
+                                    <div class="radio i-checks">
+                                        <input type="radio" value="1" name="type" title="导向商品" {if condition="$info.type == 1"}checked{/if}> <i></i> 导向商品&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" value="2" name="type" title="导向专题" {if condition="$info.type == 2"}checked{/if}> <i></i> 导向专题
+                                    </div>                                   
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">图片:</label>
+                                <div id="mainimg">上传</div>
+                                <div class="col-sm-10" id='main-img-box' style="box-shadow: 0 1px 4px rgba(0, 0, 0, 0);height: auto; margin:20px 4%;">
+                                    <div class="col-sm-2">
+                                        <input hidden type='text' name='url' value="{$info.url}">
+                                        <div class=" img-item" del-img="{$info.url}" onclick='delmainimg(this)'>
+                                            <img alt="image" class="img-responsive" src="{$info.url}">
+                                            <p class="del">删除</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>         
+                            <div class="text-center">
+                                <input type="submit" value="提交" class="btn btn-primary">
+                            </div>
+                        </form>                    
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</div>
+
+{/block}
+{block name="script"}
+
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.form.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.uploadfile.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.iframe-transport.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.ui.widget.js"></script>
+<script type="text/javascript">
+    var maxMainImg = 1;             // 主图限制上传的最大数
+    var selectMainImg = 0;          // 已经上传的数量
+    // 上传主图片
+    $(document).ready(function() {
+        $("#mainimg").uploadFile({
+            url:"/admin/banner/uploadImg", //上传URL
+            fileName:"image", //名称
+            acceptFiles:"image/*", //类型
+            formData: {name:"image",current_cate_id: 5}, //通过FROM传过去的参数
+            onSelect: function (files) {
+                if($("#main-img-box").children(".col-sm-2").length>=maxMainImg){
+                    swal("警告!", "文件上传数量已超过最大限制!","error");
+                    return false;
+                }
+                if (!files) {
+                    return false;
+                }
+                if ((files.length + selectMainImg) > maxMainImg) {
+                    // console.log('数量已超过最大限制')
+                    swal("警告!", "文件上传数量已超过最大限制!","error");
+                    return false;
+                }
+                for (var i = 0; i < files.length; i++) {
+                    if (files[i].size > (2 * 1024 * 1024)) {
+                        // console.log('文件大小已超过最大限制')
+                        swal("警告!", "文件`"+files[i].name+"`大小已超过最大限制!","error");
+                        return false;
+                    }
+                }
+                selectMainImg += files.length;
+            },
+            onSuccess:function(data,files){
+                console.log(files);
+                var html2 = "<div class='col-sm-2'>\
+                                <input hidden type='text' name='url' value="+files['path']+">\
+                                <div class='img-item' del-img="+files['path']+" onclick='delmainimg(this)'>\
+                                    <img alt='image' class='img-responsive' src="+files['path']+">\
+                                    <p class='del'>删除</p>\
+                                </div>\
+                            </div>";
+                $("#main-img-box").prepend(html2);
+                $(".ajax-file-upload-filename").remove()
+
+            },
+            onError: function(){
+               
+            }
+        });
+    });
+    // 删除图片
+    function delmainimg(obj){
+        var img = $(obj).attr('del-img');         
+        $.post(
+            '{:url("/admin/banner/delMainImg")}',
+            {'img': img},
+            function(data){
+                if(data.code == 200){
+                    selectMainImg--;
+
+                    $(obj).parent('.col-sm-2').remove();                
+                    $('.ajax-file-upload-error').remove();          
+                    swal("删除成功!", "","success");
+                }else{
+                    swal("删除失败!", "请您稍后重新尝试。","error");
+                }
+        }); 
+    }
+</script>
+
+{/block}

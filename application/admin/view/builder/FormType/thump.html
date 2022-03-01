@@ -1,0 +1,43 @@
+{case value="area"}
+
+
+<div class="form-group has-success"><label class="col-sm-2 control-label">幻灯片图片:</label>
+	<div class="col-sm-3"><div id="fileuploader">上传</div></div>
+	<div class="col-sm-6">
+		<input type="text" class="form-control" name="banner_img" required id = "banner_img">
+		<div style="height: 170px;width: 100%;padding: 15px;"><img id="myimg" src="" height  = "170px;"></div>
+	</div>
+</div>
+
+
+
+
+
+
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.form.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.uploadfile.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.iframe-transport.js"></script>
+<script src="__JS__/plugins/jquery-upload-file/js/jquery.ui.widget.js"></script>
+<script type="text/javascript"> 
+          
+                 
+
+    $(document).ready(function() {
+        $("#fileuploader").uploadFile({
+            url:"/Admin/Banner/uploadImg", //上传URL
+            fileName:"image", //名称
+            maxFileCount:1, //上传文件数量
+            acceptFiles:"image/*", //类型
+            formData: {name:"image"}, //通过FROM传过去的参数
+            onSuccess:function(data,files){               
+               $("#banner_img").val(files);
+               $("#myimg").attr("src",files);               
+            },
+            onError: function(){
+               
+            }
+        });
+    });
+      
+</script>
+{/case}

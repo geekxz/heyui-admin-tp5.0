@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{if condition="isset($meta_title)"}{$meta_title} - {/if}HEYUI 可视化社区平台管理平台</title>
+    <link href="__IMG__/g.ico" type="image/x-icon" rel="shortcut icon">
+    <!-- bootstrap -->
+    <link href="__CSS__/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+
+    <link href="__CSS__/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="__CSS__/plugins/dataTables/dataTables.responsive.css" rel="stylesheet">
+    <link href="__CSS__/plugins/dataTables/dataTables.tableTools.min.css" rel="stylesheet">    
+    
+    <link href="__CSS__/animate.min.css" rel="stylesheet">    
+    <link href="__CSS__/style.css" rel="stylesheet">
+    
+    <!-- Switchery -->
+    <link href="__CSS__/plugins/switchery/switchery.css" rel="stylesheet">
+    <script src="__JS__/plugins/switchery/switchery.js"></script>    
+	<script src="__JS__/jquery-2.1.1.js"></script>
+    <!-- 图片上传 -->
+    <script src="__JS__/plugins/jquery-upload-file/js/jquery.form.js"></script>
+	<script src="__JS__/plugins/jquery-upload-file/js/jquery.uploadfile.js"></script>
+	<script src="__JS__/plugins/jquery-upload-file/js/jquery.iframe-transport.js"></script>
+    <script src="__JS__/plugins/jquery-upload-file/js/jquery.ui.widget.js"></script>
+    <!-- sweetalert -->
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+    <!-- 复选框 -->    
+    <link href="__CSS__/plugins/iCheck/custom.css" rel="stylesheet">
+	<script src="__JS__/plugins/iCheck/icheck.min.js"></script>
+    <!-- layui -->
+    <link rel="stylesheet" href="/public/layui/css/layui.css">
+    <script src="/public/layui/layui.js" type="text/javascript"></script>
+
+    <!-- rickshaw图表 -->
+    <!-- <script src="__JS__/plugins/rickshaw/rickshaw.min.js"></script> -->
+    <!-- echarts -->
+    <script src="__JS__/plugins/echarts/echarts-all.js"></script>
+
+
+    <!-- Markdown编辑器 -->
+    <!-- <script src="__JS__/jquery-2.1.1.js"></script> -->
+    <link rel="stylesheet" href="__PUBLIC__PLUGINS__/editormd/css/editormd.preview.css" />
+    <link rel="stylesheet" href="__PUBLIC__PLUGINS__/editormd/css/editormd.min.css" />
+
+      
+    {block name="style"}{/block}
+    <style type="text/css">
+        .h-m-r{
+            margin-right: 10px;
+        }
+        .img-item{
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid #f1f1f1;
+        }
+        .img-item img{
+            width: 100%;
+            height: 200px;
+        }
+        .del{
+            height: 40px;
+            line-height: 40px;
+            margin-top: 0px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            border-top: 1px solid #f1f1f1;
+            background-color: #f1f1f1;
+        }
+        .click{
+            background: #1CAF9A;
+            color: #fff;         
+        }
+        .cate{
+            width: 100px;
+            border: 1px solid #1CAF9A;
+            border-radius: 100px;
+            margin-right: 6px;
+        }
+        /**隐藏滑块**/
+        ::-webkit-scrollbar{
+          width: 0;
+          height: 0;
+          color: transparent;
+        }
+    </style>
+    <style type="text/css">
+        #small-chat{
+            bottom: 50px;
+        }
+        body{
+            font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,微软雅黑,Arial,sans-serif;
+        }
+        .nav.nav-second-level > li.active{
+            background-color: #4165d7;
+        }
+        .nav > li.active{
+            border-left: none;
+        }
+        .nav-second-level li a{
+            padding: 18px 10px 18px 10px;
+            padding-left: 70px
+        }
+        #side-menu > li > a{
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .navbar-default .nav > li > a:hover,
+        .navbar-default .nav > li > a:focus {
+          background-color: #4165d7;
+          color: white;
+        }.nav > li > a i {
+          margin-right: 10px;
+        }
+        @media (min-width: 768px){
+            .navbar-static-side {
+                z-index: 2001;
+                position: absolute;
+                width: 260px;
+            }
+        }
+        #page-wrapper{
+            margin: 0 0 0 260px
+        }
+        .btn-corner{
+            border-radius: 6px;
+        }
+
+
+
+        .gk-list-title{
+            padding-left: 20px;
+            font-size: 18px;
+            letter-spacing: 1px;
+            height: 30px;
+            line-height: 30px;
+        }
+        .wrapper-content{
+            padding: 15px 0px 0px;
+        }
+        .ibox-content{
+            height: auto;
+        }
+        .ibox-title{
+            border-color: #4165d7;
+            border-width: 2px 0px 0;
+        }
+        
+        .ibox{
+            max-height: calc(100vh - 120px);
+            overflow: hidden;
+            overflow-y: auto;
+            margin-bottom: 0px;
+        }
+
+    </style>
+</head> 
+<!-- class="mini-navbar"初始化折叠菜单 -->
+<body>    
+<input type="hidden" name="url" value="{$Request.path}" id="url">
+    {include file="admin@public/left"/}
+    {block name="body">}{/block}
+        <div class="footer">
+            <div class="pull-right">
+                <a href="http://www.geekxz.com/">极客小寨工作室</a>
+            </div>
+            <div>
+                &copy; <small id="year"></small> - Forever
+            </div>
+        </div>
+    </div>
+    <!-- bootstrap -->
+    <script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+    <!-- 右侧列表 -->
+    <script src="__JS__/inspinia.js"></script>
+    <script src="__JS__/plugins/metisMenu/jquery.metisMenu.js"></script>
+    <script src="__JS__/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="__JS__/plugins/layer/layer.min.js"></script>
+    <!-- Custom and plugin javascript -->
+    <!-- <script src="__JS__/plugins/pace/pace.min.js"></script> -->
+    <script>
+    $(function(){
+		s_url = '/'+$('#url').val()+'.html';		
+        if( s_url != undefined){
+            var s_url= s_url;			
+            var now_url = '';
+            for(var i = 0;i<$("#side-menu li").length;i++){
+                now_url=$("#side-menu li a").eq(i).attr("href");				
+				// console.log(now_url);
+				// console.log(s_url);
+                if(now_url == s_url){					
+                    $("#side-menu a").eq(i).parent().addClass("active");
+                    $("#side-menu a").eq(i).parent().parent().parent().addClass("active");
+                    $("#side-menu a").eq(i).parent().parent().addClass("in");
+                }else{
+                    $("#side-menu a").eq(i).parent().removeClass("active");
+                }
+            }
+        }
+    })
+
+    var date = new Date();
+    var year = date .getFullYear();
+    $('#year').html(year);
+	
+    </script>
+    <script type="text/javascript">
+        // iCheck 
+        $(document).ready(function () {
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+        });
+
+    </script>
+
+    <!-- Markdown编辑器 -->
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/marked.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/prettify.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/raphael.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/underscore.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/sequence-diagram.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/flowchart.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/lib/jquery.flowchart.min.js"></script>
+    <script src="__PUBLIC__PLUGINS__/editormd/editormd.min.js"></script>
+    
+    {block name="script"}{/block}
+</body>
+</html>

@@ -1,0 +1,16 @@
+{case value="textarea"}
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+        <label class="col-sm-1 left control-label">{$form.title}：</label>
+        <div class="col-sm-6 right">
+        	{if condition="empty($form.value)"}
+            <textarea class="form-control textarea" rows="5" name="{$form.name}" {$form.extra.attr}></textarea>
+            {else/}
+            <textarea class="form-control textarea" rows="5" name="{$form.name}" {$form.extra.attr}>{$[type]form.value}</textarea>
+            {/if}
+            {notempty name="form.tip"}
+                <span class="check-tips text-muted small">{$form.tip}</span>
+            {/notempty}
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>
+{/case}

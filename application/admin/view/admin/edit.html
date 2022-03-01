@@ -1,0 +1,89 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}
+<style type="text/css">
+    th,td{
+        height: 40px;
+    }
+</style>
+{/block}
+{block name="body"}
+
+<div class="wrapper wrapper-content">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">            
+            <div class="row">
+                <p class="gk-list-title">编辑管理员信息</p>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    
+                    <div class="ibox-content" style="text-align: center;">
+                        <form method="post" class="form-horizontal" action="/Admin/admin/edit" enctype="multipart/form-data">
+                            
+                            <input type="hidden"  name="id" value="{$info['id']}" required="">
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">用户名</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="username" value="{$info.username}"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">所属角色：</label>
+                                <div class="col-sm-3">
+                                    <select name="typeid" class="form-control m-b">
+                                        {if condition="session('username') eq 'admin'"}
+                                        <option value="0">选择角色</option>
+                                        {foreach $role as $vo }
+                                        <option value="{$vo.id}" {if condition="$info.typeid == $vo.id"}selected{/if}>
+                                            {$vo.rolename}
+                                        </option>
+                                        {/foreach}
+                                        {else/}
+                                        <option value="3">产品发布用户</option>
+                                        {/if}                             
+                                    </select>
+                                </div>
+                            </div>
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">状态</label>
+                                <div class="col-sm-2">  
+                                    <div class="radio i-checks">
+                                        <input type="radio" value="1" name="status" title="正常" {if condition="$info.status == 1"}checked{/if}> <i></i> 正常&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" value="0" name="status" title="禁用" {if condition="$info.status == 0"}checked{/if}> <i></i> 禁用
+                                    </div>                                   
+                                </div>
+                            </div> 
+                            <div class="hr-line-dashed"></div>         
+                            <div class="text-center">
+                                <input type="submit" value="提交" class="btn btn-primary">
+                            </div>
+                        </form>                    
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</div>
+
+{/block}
+{block name="script"}
+
+<script type="text/javascript">
+    
+    // iCheck 
+    $(document).ready(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+
+</script>
+{/block}

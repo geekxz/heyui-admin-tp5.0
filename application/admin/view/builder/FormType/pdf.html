@@ -1,0 +1,47 @@
+{case value="pdf"}
+	<div class="form-group item_{$form.name} {$form.extra.class}">
+        <label class="col-sm-1 left control-label">{$form.title}：</label>
+        <div class="col-sm-1"><div id="fileuploader">
+        	<button class="btn btn-success " type="button">
+        	<i class="fa fa-upload"></i>&nbsp;&nbsp;
+            <span class="bold">选择文件</span></button>
+            </div>
+         </div>
+        <div class="col-sm-6">
+        {if condition="empty($form.value)"}
+            <input type="text" class="form-control" name="{$form.name}" required id = "pic" value="">   
+           {else/}
+           <input type="text" class="form-control" name="{$form.name}" required id = "pic" value="{$form.value}">
+        {/if}
+        </div>
+    </div>
+	<div class="hr-line-dashed"></div>
+	<script src="__JS__/uplode/jquery-1.7.2.min.js"></script>
+    <script src="__JS__/jquery-upload-file/js/jquery.form.js"></script>
+    <script src="__JS__/jquery-upload-file/js/jquery.uploadfile.js"></script>
+    <script src="__JS__/jquery-upload-file/js/jquery.iframe-transport.js"></script>
+    <script src="__JS__/jquery-upload-file/js/jquery.ui.widget.js"></script>
+    <script src="__JS__/jquery-upload-file/js/main.js"></script>
+    <script type="text/javascript"> 
+      
+            $("#fileuploader").uploadFile({
+                url:"__URLS__/admin/uplode/uploadPdf", //上传URL
+                fileName:"image", //名称
+                maxFileCount:1, //上传文件数量
+                acceptFiles:"image/*", //类型
+                formData: {name:"image"}, //通过FROM传过去的参数
+                onSuccess:function(data,file){
+                    //console.log(data);
+    //				alert(file);
+                   $("#pic").val(file);
+                   
+                },
+                onError: function(){
+                   
+                }
+            });
+      
+          
+    </script>
+
+{/case}

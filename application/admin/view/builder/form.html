@@ -1,0 +1,110 @@
+{extend name="admin@public/base" /}
+{block name="style"}
+<style>
+.form-group{margin-bottom:0}
+.form-control{display:inline-block}
+.pull-right{margin-left:7px}
+.m-bs{ margin-bottom:10px}
+#page-wrapper{background:#fff}
+</style>
+{/block}
+{block name="body"}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title">            
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h2>{$meta_title}</h2>
+                        </div>
+                        <div class="col-md-6"></div>
+                        
+                        
+                    </div>
+                </div> 
+
+                <div class="ibox-content">
+                    <form action="{$post_url}" method="post" class="form-horizontal " >
+                        <div class="form-group">
+                            {volist name="form_items" id="form" key="k"}   
+                            	
+                               {switch name="$form.type" } 
+
+                                {include file='admin@builder/FormType/hidden' type='' /}
+                                {// 不可修改文本 }
+                                {include file='admin@builder/FormType/static' type='' /}
+                                {// 数字 }
+                                {include file='admin@builder/FormType/num' type='' /}
+                                {// 价格 }
+                                {include file='admin@builder/FormType/price' type='' /}
+                                {// 字符串 }
+                                {include file='admin@builder/FormType/text' type='' /}
+                                {// 文本 }
+                                {include file='admin@builder/FormType/textarea' type='' /}
+                                {// 密码 }
+                                {include file='admin@builder/FormType/password' type='' /}
+                                {// 单选按钮 }
+                                {include file='admin@builder/FormType/radio' type='' /}
+                                {// 复选框 }
+                                {include file='admin@builder/FormType/checkbox' type='' /}
+                                {// 下拉框 }
+                                {include file='admin@builder/FormType/select' type='' /}
+                                {// 视频 }
+                                {include file='admin@builder/FormType/video' type='' /}
+                                {// 时间 }
+                                {include file='admin@builder/FormType/datetime' type='' /}
+                                {// 时间 }
+                                {include file='admin@builder/FormType/date' type='' 		
+								{// 图片 }
+                                {include file='admin@builder/FormType/thumb' type='' /}
+								{// 单图片 }
+                                {include file='admin@builder/FormType/pic' type='' /}
+                                {// 图片 }
+                                {include file='admin@builder/FormType/picture' type='' /}
+                                {// 图片(多图) }
+                                {include file='admin@builder/FormType/pictures' type='' /}
+                                
+                                {// 图片(无删除) }
+                                {include file='admin@builder/FormType/covers' type='' /}
+                                
+                                {// pdf文件 }
+                                {include file='admin@builder/FormType/pdf' type='' /}
+                                {// 地区联动文件 }
+                                {include file='admin@builder/FormType/area' type='' /}
+                                
+                                {// 编辑器 kindeditor }
+                                {include file='admin@builder/FormType/kindeditor' type='' /}
+                                
+                                                                
+                                {/switch}
+                            {/volist}
+                            {empty name="form_items"}
+                                <div class="builder-data-empty text-center">
+                                    <div class="empty-info">
+                                        <i class="fa fa-database"></i> 暂时没有数据<br>
+                                        
+                                    </div>
+                                </div>
+                        	{/empty}
+                        </div>                   
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                                <button class="btn btn-primary btn-block submit <?php if($ajax_submit) echo 'ajax-post';?> visible-xs visible-sm" type="submit" target-form="form-builder">确定</button>
+                                <button class="btn btn-primary submit <?php if($ajax_submit) echo 'ajax-post';?> visible-md-inline visible-lg-inline" type="submit" target-form="form-builder">确定</button>
+                                <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>        
+    </div>    
+
+</div>
+
+{/block}
+{block name="script"}{/block}

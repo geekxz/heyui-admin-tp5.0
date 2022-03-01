@@ -1,0 +1,38 @@
+{case value="datetime"}
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+        <label class="col-sm-1 left control-label">{$form.title}：</label>
+        <div class="col-sm-4 right">
+            <input type="text"  class="col-sm-4 form-control input time form_datetime" name="{$form.name}" value="{notempty name='[type]form.value'}{$[type]form.value}{/notempty}" {$form.extra.attr}>
+			
+    		<link href="/public/datepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
+			<script type="text/javascript" src="/public/datepicker/jquery-1.8.3.min.js" charset="UTF-8"></script>
+			<script type="text/javascript" src="/public/datepicker/bootstrap.min.js"></script>
+            
+			<script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+            <script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.fr.js" charset="UTF-8"></script>
+			 <script type="text/javascript" src="/public/datepicker/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+			<script type="text/javascript">
+               
+                    $(".form_datetime").datetimepicker({
+                        format      : 'yyyy-mm-dd hh:ii:ss',
+                        autoclose   : true,
+                        todayBtn    : 'linked',
+                        language    : 'zh-CN',
+                        fontAwesome : true
+					  /* days: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+					   daysShort: ["周日", "周一", "周二", "周三", "周四", "周五", "周六", "周日"],
+					   daysMin: ["日", "一", "二", "三", "四", "五", "六", "日"],
+					   months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+					   monthsShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+					   today: "今日",
+					   suffix: [],
+					   meridiem: ["上午", "下午"],
+					   format: "yyyy-mm-dd" */
+                    });
+               
+            </script>
+        </div>
+    </div>
+    <div class="hr-line-dashed"></div>			
+{/case}
+

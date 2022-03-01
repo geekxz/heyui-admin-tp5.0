@@ -1,0 +1,79 @@
+{extend name="admin@public/base" /}
+{block name="style"}
+<style>
+.form-group{margin-bottom:0}
+.form-control{display:inline-block}
+.pull-right{margin-left:7px}
+.m-bs{ margin-bottom:10px}
+#page-wrapper{background:#fff}
+</style>
+{/block}
+{block name="body"}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+
+                <div class="ibox-title">            
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h2>分配权限</h2>
+                        </div>
+                        <div class="col-md-6"></div>
+                        
+                        
+                    </div>
+                </div> 
+
+                <div class="ibox-content">
+                    <form action="{:url('doAuthority')}" method="post" class="form-horizontal " >
+                        <div class="form-group">
+						 {foreach name="res" item="v"}  
+							<ul style="float:left;margin-left:20px;display:block;">                    
+								<li>
+								
+									<input type="checkbox" name="rule[]" value="{$v['id']}">
+									<span class="nav-label"><h3 style="display:inline">{$v['node_name']}</h3></span> 
+									<ul class="nav nav-second-level" style="float:right;margin-left:50px;">	
+										{if condition="$v['child'] neq '' "}                          
+											{foreach name="$v['child']" item="v1"}									
+											<li >
+												<input class="check_box" type="checkbox" name="rule[]" value="{$v1['id']}">
+												<span class="nav-label"><h4 style="display:inline">{$v1['node_name']}</h4></span> 
+											</li> 
+											{/foreach}                         
+						
+                       					{/if}								                     
+									</ul>
+								</li>
+							</ul>
+							 {/foreach}	
+                        </div> 
+						                
+                        <div class="form-group">
+                            <div class="col-sm-4 col-sm-offset-1">
+                               
+                                <button class="btn btn-primary submit visible-md-inline visible-lg-inline" type="submit" target-form="form-builder">确定</button>
+                                <button class="btn btn-default return visible-md-inline visible-lg-inline" onclick="javascript:history.back(-1);return false;">返回</button>
+                            </div>
+                        </div>
+                        <div class="hr-line-dashed"></div>
+                    </form>
+                </div>
+
+            </div>
+        </div>        
+    </div>    
+
+</div>
+
+{/block}
+{block name="script"}
+<script type="text/javascript">
+	if ($('.check_box').is(':checked')) {
+		console.log();
+		alert(sss);
+	}
+</script>
+
+{/block}

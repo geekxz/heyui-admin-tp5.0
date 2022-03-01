@@ -1,0 +1,156 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}
+<style type="text/css">
+	
+	 /**隐藏滑块**/
+	::-webkit-scrollbar{
+	  width: 0;
+	  height: 0;
+	  color: transparent;
+	}
+</style>
+{/block}
+{block name="body"}
+<div class="wrapper wrapper-content" style="padding-bottom: 40px;padding-right:0px;padding-left: 0px;">
+	<!-- 系统任务 -->
+	<div class="col-sm-3" style="padding-right:0px;">
+	    <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h5>系统任务</h5>
+	        </div>
+	        <div class="ibox-content" style="width:100%;overflow:scroll;min-height:auto;max-height:880px;">
+
+	            <div class="input-group">
+	                <input type="text" placeholder="添加新任务" class="input input-sm form-control">
+	                <span class="input-group-btn">
+	                    <button type="button" class="btn btn-sm btn-white"> <i class="fa fa-plus"></i> 添加</button>
+	                </span>
+	            </div>
+
+	            <ul class="sortable-list connectList agile-list">	                
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>	                
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	            </ul>
+
+	    	</div>
+	    </div>
+	</div>
+	<!-- 用户自定义任务 -->
+	<div class="col-sm-3" style="padding-right:0px;">
+	    <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h5>用户自定义任务</h5>
+	        </div>
+	        <div class="ibox-content" style="width:100%;overflow:scroll;min-height:auto;max-height:880px;">
+
+	            <ul class="sortable-list connectList agile-list">
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	                <li class="success-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-danger">停止</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	            </ul>
+
+	    	</div>
+	    </div>
+	</div>
+	<!-- 已停止任务 -->
+	<div class="col-sm-3" style="padding-right:0px;">
+	    <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h5>已停止任务</h5>
+	        </div>
+	        <div class="ibox-content" style="width:100%;overflow:scroll;min-height:auto;max-height:880px;">
+
+	            <ul class="sortable-list connectList agile-list">
+	                <li class="warning-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-info">重启</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	                <li class="warning-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-info">重启</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	                <li class="warning-element">
+	                    用户 `admin`  操作了 `banner管理表-(hey_banner)`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right"><span class="label label-info">重启</span></a>
+	                        <i class="fa fa-clock-o"></i> 2021-03-25 11:14:17	                    
+                        </div>
+	                </li>
+	            </ul>
+
+	    	</div>
+	    </div>
+	</div>
+	<!-- 日志 -->
+	<div class="col-sm-3" style="padding-right:0px;">
+	    <div class="ibox float-e-margins">
+	        <div class="ibox-title">
+	            <h5>日志</h5>
+	        </div>
+
+			<div class="ibox-content" style="width:100%;overflow:scroll;min-height:auto;max-height:880px;">
+
+	            <ul class="sortable-list connectList agile-list">
+	            	{foreach $log as $vo} 
+	                <li class='{if condition="$vo.type == 0"}danger{elseif condition="$vo.type == 1"}info{elseif condition="$vo.type == 2"}success{/if}-element'>
+	                    用户 `{$vo.username}`  操作了 `{$vo.table_name_zh}-({$vo.table_name_en})`
+	                    <div class="agile-detail" style="padding-top:8px;"> 
+	                        <a href="#" class="pull-right">{$vo.type|getLogType}</a>
+	                        <i class="fa fa-clock-o"></i> {$vo.update_time|date='Y-m-d H:i:s',###}
+	                    </div>
+	                </li>
+	                {/foreach}
+	                
+	            </ul>
+
+	    	</div>
+	    </div>
+	</div>
+</div>
+
+{/block}
+{block name="script"}{/block}

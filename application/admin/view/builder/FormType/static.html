@@ -1,0 +1,13 @@
+{case value="static"}
+	<div class="form-group item_{$form.name} {$form.extra.class}">
+		<label class="col-sm-1 left control-label">{$form.title}：</label>
+		<div class="col-sm-4 right">
+        	{if condition="empty($form.value)"}
+			<p></p>
+            {else/}
+            <p>{$form.value}</p>
+            {/if}
+		</div>
+	</div>
+    <div class="hr-line-dashed"></div>
+{/case}

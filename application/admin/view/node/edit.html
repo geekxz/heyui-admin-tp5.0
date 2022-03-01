@@ -1,0 +1,103 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}
+<style type="text/css">
+    th,td{
+        height: 40px;
+    }
+</style>
+{/block}
+{block name="body"}
+
+<div class="row">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">            
+            <div class="row">
+                <h2 style="padding-left:10px">编辑节点</h2>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins">
+                    
+                    <div class="ibox-content" style="text-align: center;">
+                        <form method="post" class="form-horizontal" action="/Admin/node/edit" enctype="multipart/form-data">
+                            <div class="hr-line-dashed"></div>
+                            <input type="hidden"  name="id" value="{$info['id']}" required="">
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">所属类别：</label>
+                                <div class="col-sm-3">
+                                    <select name="typeid" class="form-control m-b"> 
+                                        <option value=''>请选择：</option>
+                                        {volist name="res" id="vo"}
+                                        <option value="{$vo.id}" {if condition="$info.typeid==$vo.id"}selected{/if}>
+                                        {if condition="empty($vo['level'])"}
+                                                {$vo.node_name}
+                                        {else/}
+                                            <?php 
+                                                $str = str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;', $vo['level']).'|----'.$vo['node_name'];
+                                                $str = "&nbsp;&nbsp;".$str;
+                                                echo $str; 
+                                            ?>
+                                        {/if}
+                                        </option>
+                                        {/volist}
+                                        </select>                                  
+                                    </select>
+                                </div>
+                            </div>
+                        
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">节点名称</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="node_name" required="" value="{$info['node_name']}"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">模型名称</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="module_name" value="{$info['module_name']}"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">控制器名称</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="control_name" value="{$info['control_name']}"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">动作名称</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="action_name" value="{$info.action_name}"></div>
+                            </div>
+
+
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success">
+                                <label class="col-sm-1 control-label">是否为菜单</label>
+                                <div class="col-sm-2">  
+                                    <div class="radio i-checks">
+                                        <input type="radio" value="1" name="is_menu" title="否" {if condition="$info.is_menu==1"}checked{/if}> <i></i> 否&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="radio" value="2" name="is_menu" title="是" {if condition="$info.is_menu==2"}checked{/if}> <i></i> 是
+                                    </div>                                   
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group has-success"><label class="col-sm-1 control-label">菜单样式</label>
+                                <div class="col-sm-3"><input type="text" class="form-control" name="style" value="{$info.style}"></div>
+                            </div>
+
+                            <div class="hr-line-dashed"></div>         
+                            <div class="text-center">
+                                <input type="submit" value="提交" class="btn btn-primary">
+                            </div>
+                        </form>                    
+                    </div>
+                </div>
+            </div>
+        </div>         
+    </div>
+</div>
+
+{/block}
+{block name="script"}{/block}

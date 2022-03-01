@@ -1,0 +1,136 @@
+<style type="text/css">
+    .nav > li > a{
+        color: #fff;
+        font-size: 12px;
+        letter-spacing: 1px;
+        font-weight: normal;
+    }
+    .navbar-top-links li a{
+        padding: 10px 0px;
+    }
+    .minimalize-styl-2{
+        margin: 10px 5px 8px 20px
+    }
+    .nav-tip{
+        padding: 4px 12px;
+        margin: 12px 5px 5px 6px;
+        font-size: 14px;
+        float: left;
+        font-size: 12px;
+        letter-spacing:1px;
+    }
+    .nav-tip li{
+        float: left;
+    }
+</style>
+<div id="wrapper">
+ 
+    <nav class="navbar-default navbar-static-side" role="navigation" id="navs">
+        <div class="sidebar-collapse">
+            <ul class="nav" id="side-menu">
+                <li class="nav-header" style="text-align:center;">
+                    <div class="dropdown profile-element"> <span>
+                      </span>
+                        <span class="clear"> <span class="block m-t-xs" style = "color:#fff;"> <strong class="font-bold">{$Think.session.username}您好</strong>
+                      </span> <span class="text-muted text-xs block">欢迎回来</span> </span>
+                    </div>
+                    <div class="logo-element">
+                        Admin
+                    </div>
+                </li>
+                <li class="active">
+                    <a href="{:url('admin/index/index')}">
+                        <i class="fa fa-television"></i> 
+                        <span class="nav-label">工作台</span> 
+                        <!-- <span class="label label-primary pull-right">NEW</span> -->
+                    </a>
+                </li>
+                {php}
+					$model = Model('Admin/node');
+					$left = $model->getPriBtn();
+				{/php}
+                {foreach name="left" item="v"}
+    			<li>
+                    <a href="index.html"><i class="{$v['style']}"></i> <span class="nav-label">{$v['node_name']}</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">
+                    
+                    {if condition="empty($v['children']) neq true"}
+                          
+                        {foreach name="$v['children']" item="v1"}
+						<li>                            
+                            <a href="{:url($v1['module_name'].'/'.$v1['control_name'].'/'.$v1['action_name'])}">{$v1['node_name']}</a>
+                        </li> 
+                        {/foreach}
+                    {/if}
+                    
+						
+                    </ul>
+                </li>
+				{/foreach}
+                <li>
+                    <a href="index.html"><i class="fa fa-gamepad"></i> <span class="nav-label">应用中心</span> <span class="fa arrow"></span></a>
+                    <ul class="nav nav-second-level">                    
+                        <li>                            
+                            <a href="https://www.geekxz.com" target="_blank">主题模板</a>
+                        </li>                 
+                        <li>                            
+                            <a href="#">疑难问答</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="{:url('admin/login/loginout')}"><i class="fa fa-sign-out"></i> <span class="nav-label">退出登录</span> <span class="fa arrow"></span></a>
+                </li>
+            </ul>
+    </nav>
+</div>
+<div id="page-wrapper" class="gray-bg" style="overflow: hidden;">
+	<div class="row border-bottom">
+		<nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0;background-color: #fff;">
+			<div class="navbar-header">
+				<a class="navbar-minimalize minimalize-styl-2 btn btn-primary" href="#"><i class="fa fa-align-left"></i> </a>
+                <ul class="navbar-left nav-tip">
+                
+                    <li>
+                        <a href="{:url("index/index")}">首页<span style="padding: 0 10px;">{if condition="count($crumbs) > 1"}/{/if}</span></a>
+                    </li>
+                    {foreach name="crumbs" item="v" key="k"}
+                    <li>
+                        <!-- <a {if condition="$v.is_menu == 2"}href="{:url($v.control_name."/".$v.action_name)}"{/if}>{$v.node_name}<span style="padding: 0 10px;">{if condition="(count($crumbs)-1) != $k"}/{/if}</span></a> -->
+                        <a>{$v.node_name}<span style="padding: 0 10px;">{if condition="(count($crumbs)-1) != $k"}/{/if}</span></a>
+                    </li>
+                    {/foreach}
+                </ul>
+
+			</div>
+			<ul class="nav navbar-top-links navbar-right">
+				<li>
+					<span class="m-r-sm text-muted welcome-message">每一个你不满意的现在,都有一个你不努力的曾经.</span>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" style="color: #333">
+                        欢迎你，{$Think.session.real_name}
+                        <img src="__IMG__/logo.jpg" alt="" style="width: 32px;margin-left: 10px;">
+                    </a>
+					<ul class="dropdown-menu animated fadeInRight m-t-xs">
+						<li><a class="J_menuItem" href="/Admin/admin/editpwd/id/{$Think.session.id}.html">修改密码</a>
+						</li>
+						<li><a class="J_menuItem" href="{:url('admin/admin/edit')}">修改用户名</a>
+						</li>						
+						<li class="divider"></li>
+						<li><a href="{:url('admin/Login/loginOut')}">安全退出</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+	</div>
+    <!--mini聊天窗口开始-->
+        
+    <div id="small-chat">
+        <span class="badge badge-warning pull-right">5</span>
+        <a class="open-small-chat">
+            <i class="fa fa-comments"></i>
+        </a>
+    </div>
+

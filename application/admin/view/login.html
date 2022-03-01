@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEYUI Admin后台管理系统-登陆</title>
+    <link href="__CSS__/bootstrap.min.css" rel="stylesheet">
+    <link href="__CSS__/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="__CSS__/animate.min.css" rel="stylesheet">
+    <link href="__CSS__/style.min.css" rel="stylesheet">
+    <!-- sweetalert -->
+    <link href="__CSS__/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+    <script src="__JS__/plugins/sweetalert/sweetalert.min.js"></script>
+    <!-- layui -->
+    <link rel="stylesheet" href="/public/layui/css/layui.css">
+    <script src="/public/layui/layui.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <script>
+        if(window.top!==window.self){window.top.location=window.location};
+    </script>
+    <style type="text/css">
+    body{
+        background: url(__IMG__/bg-pattern.png), linear-gradient(to left, rgb(50, 137, 68), rgb(36, 124, 220));
+        background-position-x: initial, initial;
+        background-position-y: initial, initial;
+        background-size: initial, initial;
+        background-repeat-x: initial, initial;
+        background-repeat-y: initial, initial;
+        background-attachment: initial, initial;
+        background-origin: initial, initial;
+        background-clip: initial, initial;
+        background-color: initial;
+    }
+    #bg {
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+    }
+    #bg img {
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        margin:auto;
+        width:100%;
+        height:100%;
+        z-index:-1;
+    }
+    .login-f{
+        position:fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%,-50%);
+        -moz-transform: translate(-50%,-50%);
+        transform:translate(-50%,-50%);
+    }
+    .panel{
+        border: none;
+        letter-spacing:2px
+    }
+    .panel-default>.panel-heading{        
+        background-color: #409eff;
+        color: #fff;
+    }
+    .panel-heading{
+        line-height: 60px;
+        font-size: 24px;
+        text-align: center;
+    }
+    .login-box{
+        width: 100%;
+        text-align: center;
+        padding: 0 30px;
+    }
+    .form-group input{
+        width: 100%;
+        margin: 0 auto;
+        height: 60px;
+        border-radius: 60px;
+    }
+    #login_btn{
+        height: 50px;
+        margin-top: 90px;
+        margin-bottom: 20px;
+        /*border-radius: 10px;*/
+        overflow: hidden;
+    }
+</style>
+</head>
+<body class="gray-bg">
+     <div id="bg">
+        <!-- <img src="__IMG__/login-bg.png" alt=""> -->
+    </div>
+    <div class="dropdown profile-element" style="position: relative;top: 30px;opacity: 1"> 
+        <img src="__IMG__/logo.png" class="logo-bg">
+    </div>
+    <!-- animated fadeInDown -->
+    <div class="col-lg-4 text-center login-f" style="opacity: 1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                HEYUI 后台管理管理系统
+            </div>
+            <div class="panel-body">
+                <div class="login-box">
+                    <p class="m-t-md" id="err_msg"></p>
+                    <form class="m-t" role="form" action="index.html" method="post">
+                        <div class="form-group">
+                            <input type="username" id="username" class="form-control" placeholder="用户名" required name="username">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="password" class="form-control" placeholder="密码" required name="password">
+                        </div>
+                        <div class="form-group" style="margin-bottom:70px">
+                            <input type="text" class="form-control" placeholder="验证码" style="color:black;width:45%;float:left;margin:0px 0px;" name="code" id="code"/>                    
+                            <img id="randomCode" src="{:url('checkVerify')}" onclick="javascript:this.src='{:url('checkVerify')}?tm='+Math.random();" style="width:45%;float:right;cursor: pointer;height: 50px;border-radius: 10px;border: 1px solid #1c84c6"/>
+                        </div>
+                        <input class="btn btn-success btn-block" id="login_btn" readonly value="登录"/>
+                        <!-- <a href="javascript:void(0);" onclick="getpwd()"><small>忘记密码?</small></a> -->
+                    </form>
+                    <p class="m-t"> 极客小寨工作室 &copy; <small id="year"></small> </p>
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+    <!-- Mainly scripts -->
+    <script src="__JS__/jquery.min.js?v=2.1.4"></script>
+    <script src="__JS__/bootstrap.min.js?v=3.3.6"></script>
+    <script type="text/javascript">
+        document.onkeydown=function(event){
+            var e = event || window.event || arguments.callee.caller.arguments[0];
+            if(e && e.keyCode==13){ // enter 键
+                $('#login_btn').click();
+            }
+        };
+        var lock = false;
+        $(function () {
+            $('#login_btn').click(function(){
+                if(lock){
+                    return;
+                }               
+                lock = true;
+                var username = $('#username').val();
+                var password = $('#password').val();
+                var code = $('#code').val();                
+                $('#login_btn').removeClass('btn-success').addClass('btn-danger').val('登陆中...');                
+                $.post("{:url('login/doLogin')}",{'username':username, 'password':password, 'code':code},function(data){
+                    lock = false;
+                    $('#login_btn').val('登录').removeClass('btn-danger').addClass('btn-success');
+                    if(data.code!=1){
+                        layui.use("layer", function () {
+                            layer.msg(data.msg);
+                            $('#code').val('');
+                        });
+                        document.querySelector('#randomCode').onclick();
+                        return;
+                    }else{
+                        window.location.href=data.data;
+                    }
+                });
+            });
+        });
+        function getpwd(){
+            swal("想找回密码是吧?然而这并没有什么卵用,忘记密码的话请联系工作人员", "","",);
+            /*setTimeout(function(){
+                self.location.reload();
+            },500)*/  
+        }
+
+        var date = new Date();
+        var year = date .getFullYear();
+        $('#year').html(year);
+    </script>
+</body>
+</html>

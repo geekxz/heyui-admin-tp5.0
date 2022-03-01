@@ -1,0 +1,224 @@
+{/*<case value="picture">
+
+  <?php  dump($[type]form); ?>
+    <div class="form-group item_{$[type]form.name} {$[type]form.extra.class}">
+        <label class="left control-label">{$[type]form.title}：</label>
+        <div class="right row">
+            <div  id="[type]{$group_k}_upload_box_{$[type]k}" class="wu-example">
+                <!--用来存放文件信息-->
+                <div id="[type]{$group_k}_upload_list_{$[type]k}" class="uploader-list col-xs-12 img-box">
+                    <notempty name="[type]form.value">
+                        <div id="[type]{$group_k}_upload_preview_{$[type]k}" class="col-md-4 file-item thumbnail">
+                            <i class="fa fa-times-circle remove-picture"></i>
+                            <img src="{$[type]form.value|get_cover}" data-id="{$[type]form.value}">
+                        </div>
+                    <else />
+                        <div id="[type]{$group_k}_upload_preview_{$[type]k}" class="col-md-4 file-item thumbnail hidden">
+                            <i class="fa fa-times-circle remove-picture"></i>
+                            <img>
+                        </div>
+                    </notempty>
+                </div>
+                <div class="btns col-xs-12">
+                    <input type="hidden" id="[type]{$group_k}_upload_input_{$[type]k}" name="{$[type]form.name}" value="{$[type]form.value}">
+                    <div id="[type]{$group_k}_upload_{$[type]k}" class="btn btn-primary">上传图片</div>
+                    <button id="ctlBtn" class="btn btn-default hidden">开始上传</button>
+                    <notempty name="[type]form.tip">
+                        <span class="check-tips text-muted small">{$[type]form.tip}</span>
+                    </notempty>
+                </div>
+            </div>
+
+            <script type="text/javascript">
+                $(function(){
+                    var uploader_[type]{$group_k}_upload_{$[type]k} = WebUploader.create({
+                        auto: true,                                                                    // 选完文件后，是否自动上传
+                        duplicate: true,                                                               // 同一文件是否可以重复上传
+                        swf: '__CUI__/swf/uploader.swf',                                               // swf文件路径
+                        server: '{:U(MODULE_MARK."/Upload/upload", array("dir" => "image"))}',    	   // 文件接收服务端
+                        pick: '#[type]{$group_k}_upload_{$[type]k}',                                   // 选择文件的按钮
+                        resize: false,                                                                 // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+                        fileNumLimit: 1,                                                             // 验证文件总数量, 超出则不允许加入队列
+                        fileSingleSizeLimit:<php> echo C('UPLOAD_FILE_SIZE') ? : 2; </php>*1024*1024,  // 验证单个文件大小是否超出限制, 超出则不允许加入队列
+                        // 文件过滤
+                        accept: {
+                            title: 'Images',
+                            extensions: 'gif,jpg,jpeg,bmp,png',
+                            mimeTypes: 'image/*'
+                        }
+                    });
+
+                    // 文件上传过程中创建进度条实时显示。
+                    uploader_[type]{$group_k}_upload_{$[type]k}.on( 'uploadProgress', function( file, percentage ) {
+                        $( '#[type]{$group_k}_upload_preview_{$[type]k}').removeClass('hidden');
+                        var $li = $( '#[type]{$group_k}_upload_preview_{$[type]k}'),
+                            $percent = $li.find('.progress .progress-bar');
+                        // 避免重复创建
+                        if ( !$percent.length ) {
+                            $percent = $('<div class="progress"><div class="progress-bar"></div></div>')
+                                    .appendTo( $li )
+                                    .find('.progress-bar');
+                        }
+                        $percent.css( 'width', percentage * 100 + '%' );
+                    });
+
+                    // 完成上传完了，成功或者失败，先删除进度条。
+                    uploader_[type]{$group_k}_upload_{$[type]k}.on( 'uploadComplete', function( file ) {
+                        $( '#[type]{$group_k}_upload_preview_{$[type]k}' ).find('.progress').remove();
+                    });
+
+                    // 文件上传成功，给item添加成功class, 用样式标记上传成功。
+                    uploader_[type]{$group_k}_upload_{$[type]k}.on( 'uploadSuccess', function( file , response) {
+                        $( '#[type]{$group_k}_upload_preview_{$[type]k}' ).addClass('upload-state-done');
+                        if(eval('response').status == 0){
+                            $.alertMessager(response.info);
+                        } else {
+                            $( '#[type]{$group_k}_upload_input_{$[type]k}' ).attr('value', response.id);
+                            $( '#[type]{$group_k}_upload_preview_{$[type]k} img').attr('src', response.url);
+                        }
+                    });
+
+                    // 文件上传失败，显示上传出错。
+                    uploader_[type]{$group_k}_upload_{$[type]k}.on( 'uploadError', function( file ) {
+                        $.alertMessager('error');
+                        var $li = $( '#[type]{$group_k}_upload_preview_{$[type]k}'),
+                            $error = $li.find('div.error');
+                        // 避免重复创建
+                        if ( !$error.length ) {
+                            $error = $('<div class="error"></div>').appendTo( $li );
+                        }
+                        $error.text('上传失败');
+                    });
+
+                    // 删除图片
+                    $(document).on('click', '#[type]{$group_k}_upload_list_{$[type]k} .remove-picture', function() {
+                        $( '#[type]{$group_k}_upload_input_{$[type]k}' ).val('') //删除后覆盖原input的值为空
+                        $( '#[type]{$group_k}_upload_preview_{$[type]k}').addClass('hidden');
+                    });
+                });
+            </script>
+        </div>
+    </div>
+</case>*/}
+
+
+
+
+
+
+{case value="picture"}
+   <link rel="stylesheet" type="text/css" href="__JS__/uplode/webuploader.css">
+	 <!--//<link rel="stylesheet" type="text/css" href="__JS__/uplode/bootstrap.min.css">
+	-->
+	<script src="__JS__/uplode/jquery-1.7.2.min.js"></script>
+	<script src="__JS__/uplode/webuploader.min.js"></script>
+    <div class="form-group item_{$form.name} {$form.extra.class}">
+		<label class="col-sm-1 left control-label">{$form.title}：</label>
+		<div class="col-sm-4 right">
+			
+            <div class="hr-line-dashed"></div>
+	        <div id="uploader" class="wu-example form-group" >
+    <!--用来存放文件信息-->
+            <div id="thelist" class="uploader-list "></div>
+            <div class="btns" style="margin-bottom:10px" >
+                <div id="picker">选择文件</div> <div id="aa"  class="btn btn-default" >开始上传</div>
+            </div>
+            
+           
+            {if condition="!empty($form.value)"}
+               
+                      {foreach name="option" item="file" key="option_key2"}
+                           <div  style='height:150px;width:150px;border:1px silod #ddd;float:left;margin-right:10px' class='del'>
+                                <div style='height:130px'><img width='100%' height='100%' src='http://mall.danjiguanjia.com{$file}"'></div>
+                      
+                                <div style='height:20px;background:#eee' onclick='del($(this))'>删除</div>
+                            </div>
+                      {/foreach}
+              	 {/if}
+            
+            
+            
+    </div>
+		</div>
+	</div>
+	
+	<div class="hr-line-dashed"></div>
+
+<script type="text/javascript">
+
+var uploader = WebUploader.create({
+
+    // swf文件路径
+    swf:  './js/Uploader.swf',
+
+    // 文件接收服务端。
+    server: 'http://mall.danjiguanjia.com/admin/uplode/index',
+
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: '#picker',
+
+    // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+    resize: false
+});
+// 当有文件被添加进队列的时候
+uploader.on( 'fileQueued', function( file ) {
+	
+	var $list = $('#thelist');
+  /*  $list.append( '<div id="' + file.id + '" class="item">' +
+        '<h4 class="info">' + file.name + '</h4>' +
+        '<p class="state">等待上传...</p>' +
+    '</div>' );*/
+});
+
+$('#aa').on('click',function(){
+	uploader.upload();
+});
+
+//文件上传过程中创建进度条实时显示。
+uploader.on( 'uploadProgress', function( file, percentage ) {
+    var $li = $( '#'+file.id ),
+        $percent = $li.find('.progress .progress-bar');
+
+    // 避免重复创建
+    if ( !$percent.length ) {
+        $percent = $('<div class="progress progress-striped active">' +
+          '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+          '</div>' +
+        '</div>').appendTo( $li ).find('.progress-bar');
+    }
+
+    $li.find('p.state').text('上传中');
+
+    $percent.css( 'width', percentage * 100 + '%' );
+});
+uploader.on( 'uploadSuccess', function( file,response ) {
+	
+	console.log(response['_raw']['data']);
+    $( '#'+file.id ).find('p.state').html("上成功");
+	$('#aa').parent().after("<div  style='height:150px;width:150px;border:1px silod #ddd;float:left;margin-right:10px' class='del'><div style='height:130px'><img width='100%' height='100%' src='http://mall.danjiguanjia.com"+response['_raw']+"'></div><input type='hidden' name='{$form.name}[]' value="+response['_raw']+"><div style='height:20px;background:#eee' onclick='del($(this))'>删除</div></div>");
+	var filename = $('.file').val()+'#'+response['_raw'];
+	$('.file').val(filename);
+   
+});
+
+uploader.on( 'uploadError', function( file ) {
+    $( '#'+file.id ).find('p.state').text('上传出错');
+});
+
+uploader.on( 'uploadComplete', function( file ) {
+    $( '#'+file.id ).find('.progress').fadeOut();
+});
+
+$('.del').mouseover(function(){
+	
+	
+	
+});
+function del(a){
+	a.parents('.del').remove();
+	
+}
+</script>
+{/case}
+

@@ -1,0 +1,39 @@
+{case value="thumb"}
+<!--
+<link href="__CSS__/plugins/jquery-upload-file/css/jquery.fileupload-ui.css" rel="stylesheet">
+<link href="__CSS__/plugins/jquery-upload-file/css/jquery.fileupload.css" rel="stylesheet">
+-->
+
+<div class="form-group has-success item_{$form.name} {$form.extra.class}">
+<label class="col-sm-1 left control-label">{$form.title}:</label>
+	<div class="col-sm-3">
+		<div id="fileuploader">上传</div>
+	</div>
+	<div class="col-sm-6">
+		<input type="text" class="form-control" name="banner_img" required id = "fileupload">
+		<div style="height: 170px;width: 100%;padding: 15px;">
+			<img id="myimg" src="" height= "170px">
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">   
+    $(function () {
+        $("#fileuploader").uploadFile({
+            url:"/Admin/Banner/uploadImg", //上传URL
+            fileName:"image", //名称
+            maxFileCount:1, //上传文件数量
+            acceptFiles:"image/*", //类型
+            formData: {name:"image"}, //通过FROM传过去的参数
+            onSuccess:function(data,files){               
+               $("#banner_img").val(files);
+               $("#myimg").attr("src",files);               
+            },
+            onError: function(){
+               
+            }
+        });
+    };
+      
+</script>
+{/case}

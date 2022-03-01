@@ -1,0 +1,38 @@
+{case value="area"}
+
+	<div class="form-group item_{$form.name} {$form.extra.class}">
+		<label class="col-sm-1 left control-label">{$form.title}：</label>
+		<div class="col-sm-4 right">
+        	<select class="form-control cui-select select" id="s_province" name="province" required></select>  
+			<select class="form-control cui-select select" id="s_city" name="city" required></select>  
+			<select class="form-control cui-select select" id="s_county" name="county" required></select>
+		
+			<script class="resources library" src="__JS__/area/area.js" type="text/javascript"></script>
+			
+			<script type="text/javascript">_init_area();</script>
+            {notempty name="form.province"}
+            	<input type="hidden" name="province" value="{$form.value}">
+             {/notempty}
+            {notempty name="form.city"}
+            	<input type="hidden" name="city" value="{$form.value}">
+             {/notempty}
+             {notempty name="form.country"}
+            	<input type="hidden" name="country" value="{$form.value}">
+             {/notempty}
+			{notempty name="form.tip"}
+				<span class="check-tips text-muted small">{$form.tip}</span>
+			{/notempty}
+		</div>
+	</div>
+	<div class="hr-line-dashed"></div>
+	<script src="__JS__/uplode/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript">
+		var Gid  = document.getElementById ;
+		var showArea = function(){
+				Gid('show').innerHTML = "<h3>省" + Gid('s_province').value + " - 市" + 	
+				Gid('s_city').value + " - 县/区" + 
+				Gid('s_county').value + "</h3>"
+			}
+		Gid('s_county').setAttribute('onchange','showArea()');
+	</script>
+{/case}

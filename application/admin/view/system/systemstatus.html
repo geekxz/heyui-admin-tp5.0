@@ -1,0 +1,60 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}
+
+{/block}
+{block name="body"}
+<style type="text/css">
+	#page-wrapper{
+		padding-left: 0px;
+		padding-right: 15px;
+	}
+    .fl{
+        width: 50%;
+        float: left;
+    }
+    .ibox-content{
+        min-height: 60px;
+        border-radius: 6px;
+        border-width: 0px 0px;
+        padding: 0px
+    }
+</style>
+<div class="wrapper wrapper-content" style="padding-bottom: 40px;padding-right:0px;padding-left: 0px;">
+
+<div class="col-sm-6" style="padding-right:0px;">
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">
+            <h5>系统信息</h5>
+        </div>
+        <div class="ibox-content" style="padding: 0px 20px; padding-bottom: 5px;">
+            <!-- table-hover -->
+            <table class="table table-bordered ">
+                <thead>
+                    <tr>
+                        <th>名称</th>
+                        <th>值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                	{foreach name="sysinfo" item="vo" key="k"}
+                    <tr>
+                        <td width="20%" style="text-align: left">{$k}</td>
+                        <td width="70%" style="text-align: left">{$vo}</td>
+                    </tr>
+                    {/foreach}
+                    
+                    
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+{/block}
+{block name="script"}{/block}

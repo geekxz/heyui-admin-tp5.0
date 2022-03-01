@@ -1,0 +1,769 @@
+{extend name="public/base" /}
+
+{block name="sidebar"}{/block}
+
+{block name="style"}
+
+<style type="text/css">
+        i{
+            color:#fff;
+        }
+        .box{
+            width: 96%;
+            margin: 0 auto;
+            color: #2c3e50;
+        }        
+        .welcome{
+            width: 54%;
+            float: left;
+            height: 150px;
+            color: #fff;
+            position: relative;
+        } 
+         .widget{            
+            margin: 0;
+        }           
+        .team{
+            width: 44%;
+            float: right;
+            height: 150px;
+            position: relative;
+        }
+        .subtitle{
+            padding-bottom: 25px;
+        }
+        .subtitle p{
+            height: 22px;
+            line-height: 22px;
+            color: #fff;
+        }
+        .subtitle p a{ 
+            width: 200px;
+            color: #fff;
+            display: block;
+            text-align: center;
+            border-radius: 10px;
+            background: #2c5fe9;
+            margin-top: 5px;
+        }
+        .welcome-bg{
+            position: absolute;
+            bottom: -5px;
+            right: 10px;
+            width: 300px;
+            height: 120px;
+        }
+        .code{
+            position: absolute;
+            bottom: 30px;
+            right: 20px;
+            height: 80px;
+            text-align: center;
+        }
+        .code-bg{
+            width: 80px;
+            height: 80px;
+        }
+        .code p{
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            font-size: 10px;
+        }
+        .we-bg{
+            background: #4577ff;
+        }
+        .team-bg{            
+            background:#ffb08b;
+        }
+        .team ul{
+            font-size: 15px;
+        }
+        .team span{
+            color: #fff;
+        }
+        .total{ 
+            width: 96%;
+            margin: 0 auto;
+            height: 100px;
+            margin-top: 25px;
+        }
+        .total .item{
+            width: 23.5%;
+            height: 100px;
+            float: left;
+            margin-right: 2%;
+            border-radius: 10px;
+        }
+        .total .widget{
+            background: #fff;
+        }
+        .total .widget span{
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .total .widget h2{
+            font-size: 30px;
+            margin-top: 15px;
+        }
+        .total .item:last-child{
+
+            margin-right: 0;
+        }
+        .total .widget{
+            margin: 0;
+            padding: 0;
+        }
+        .total .ico{
+            background: rgba(64,158,255,0.45);
+            padding: 15px 0px;
+            margin-left: 12px;
+            border-radius: 10px 0 0 10px;
+        }
+        .total .ext{
+            padding: 15px 20px;
+        }
+        .content{ 
+            width: 96%;
+            margin: 0 auto;
+            height: auto;
+            margin-top: 20px;
+        }
+        .user-box{
+            width: 30%;
+            height: 320px;
+            float: left;
+            border-radius: 10px;
+            
+            box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        
+        .art-box{
+            width: 68%;
+            height: 320px;
+            float: right;
+            border-radius: 10px;
+            box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        .content .tit{
+            height: 60px;
+            line-height: 60px;
+            padding-left: 20px;
+            font-size: 16px;
+            /*border: 1px solid red;*/
+        }
+        .info{
+            text-align: center;
+        }
+        .user-bg{
+            width: 140px;
+            height: 140px;
+            border-radius: 140px;
+            margin-top: 10px;
+            box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
+        }
+        .ext ul li{
+            width: 33.33%;
+            float: left;;
+            height: 80px;
+            margin-top: 15px;
+        }
+
+        .ext ul li label{
+            display: block;
+            height: 40px;
+            line-height: 60px;
+            font-size: 22px;
+            /*border: 1px solid red;*/
+        }
+        .art .item{
+            height: 110px;
+            margin-bottom: 20px;
+        } 
+        .art-bg{
+            width: 110px;
+            height: 110px;
+            border-radius: 10px;
+            margin-left: 2%;
+            float: left;
+            border-radius: 10px;
+            box-shadow: 0 1rpx 6rpx rgba(0, 0, 0, 0.1);
+        }
+        .art .text{
+            float: right;
+            width: 84%;
+            padding: 0 10px;
+        }
+        .art .text p{
+           height: 40px;
+           line-height: 40px;
+           font-size: 16px;
+           font-weight: 800
+        }
+</style>
+{/block}
+
+{block name="body"}
+
+    <!-- 主体 -->
+    <!-- <br> -->
+    <!-- <div class="row"> -->
+
+       <!--  <div class="box">
+            <div class="welcome item">
+                <div class="widget we-bg text-left">
+                    <div class="m-b-md">
+                        <h2>欢迎来到极客小寨-CMS管理平台</h2>
+                    </div>
+                    <div class="subtitle">
+                        <p>您还可以点击极客小寨官方网站，查看更多信息</p>
+                        <p><a href="{:config('setting.HTTP_HOST')}">{:config('setting.HTTP_HOST')}</a></p>
+                    </div>
+                </div>
+                <img src="__IMG__/header-bg.png" class="welcome-bg">
+            </div>
+
+            <div class="item team">
+                <div class="widget team-bg text-left">                    
+                    <h2>产品团队</h2>
+                    <ul class="list-unstyled m-t-md">
+                        <li>
+                            <label>策划&nbsp;&nbsp;</label>
+                            <span> 技术总监 </span>
+                        </li>
+                        <li>
+                            <label>研发&nbsp;&nbsp;</label>
+                            <span> 陈东东 </span>&nbsp;&nbsp;
+                        </li>
+                        <li>
+                            <label>设计&nbsp;&nbsp;</label>
+                            <span> 蔡东东 </span>
+                        </li> 
+                    </ul>                
+                </div> 
+                <div class="code">
+                    <img src="__IMG__/geekxz-code.jpg" class="code-bg">
+                    <p>极客小寨工作室官方公众号</p>
+                </div>         
+            </div>            
+        </div> -->
+        <!-- <div style="clear: both;"></div> -->
+        <!-- <div class="total">
+            <div class="item">
+                <div class="widget">
+                    <div class="row">
+                        <div class="col-xs-4 text-center ico">
+                            <i class="fa fa-users fa-5x"></i>
+                        </div>
+                        <div class="col-xs-7 text-right ext">
+                            <span> 总访问量 </span>
+                            <h2 class="font-bold"> 4,2320</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="widget">
+                    <div class="row">
+                        <div class="col-xs-4 text-center ico">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-7 text-right ext">
+                            <span> 总访用户 </span>
+                            <h2 class="font-bold"> 51,862</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="widget">
+                    <div class="row">
+                        <div class="col-xs-4 text-center ico">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-7 text-right ext">
+                            <span> 新增访问量（月） </span>
+                            <h2 class="font-bold"> 1,862</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="widget">
+                    <div class="row">
+                        <div class="col-xs-4 text-center ico">
+                            <i class="fa fa-user fa-5x"></i>
+                        </div>
+                        <div class="col-xs-7 text-right ext">
+                            <span> 新增访问量（月） </span>
+                            <h2 class="font-bold"> 1,862</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+        <!-- <div style="clear: both;"></div> -->
+        <!-- <div class="content">
+            <div class="user-box">
+                <div class="tit">个人信息</div>
+                <div class="info">
+                    <img src="__IMG__/logo.jpg" class="user-bg">
+                    <div class="ext">
+                        <ul>
+                            <li>
+                                <label>45465</label>
+                                <span> 访问量 </span>
+                            </li>
+                            <li>
+                                <label>4578</label>
+                                <span> 粉丝 </span>
+                            </li>
+                            <li>
+                                <label>52</label>
+                                <span> 作品 </span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="art-box">
+                <div class="tit">文章</div>
+                <div class="art">
+                    <div class="item">
+                        <img src="__IMG__/geekxz-code.jpg" class="art-bg">
+                        <div class="text">
+                            <p>从 I/O 大会看谷歌如何推动 VR/AR 的生态发展和技术边界 | Google I/O 2017</p>
+                            <div class="art-content">谷歌的 VR/AR 故事，一切还要从 Carboard 说起。当时所有人都以为谷歌在跟大家开玩笑，后来的故事众所周知，便宜但不廉价的 Cardboard 让更多的人知道 VR，同时 1000万（谷歌官方 2017 年3 月宣布的数据）的销量证明，谷歌对 Cardboard，也可以说对 VR 非常认真。</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <img src="__IMG__/geekxz-code.jpg" class="art-bg">
+                        <div class="text">
+                            <p>如何为开源做贡献？</p>
+                            <div class="art-content">微信小程序-基于画布上画画涂鸦实现用户自定画笔大小，实现用户自定色彩，实现用户动画撤回之前的操作，实现生成分享海报，实现用户预览画作清除画布</div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div> -->
+    <!-- </div> -->
+
+    <style type="text/css">
+        .fl{
+            width: 50%;
+            float: left;
+        }
+        .ibox-content{
+            min-height: 160px;
+            border-radius: 6px;
+            border-width: 0px 0px;
+            padding: 0px
+        }
+        .ibox{
+            margin-bottom: 15px;
+        }
+        .ibox-content .item{
+            height: 50px;
+            line-height: 50px;    
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            color: #000000;
+            padding: 0px 20px 0px 20px
+        }
+        .ibox-content .item:nth-child(2){  
+            height: 60px;
+            line-height: 60px;       
+            border-bottom: 1px solid #f1f1f1
+        }
+        .ibox-content .item:last-child{  
+            line-height: 50px;
+        }
+        .ibox-content .item:first-child span:last-child{
+            font-size: 18px;
+            font-weight: 700;
+            margin-left: 10px;
+        }
+        .text-gray span:first-child{
+            color: #d8d8d8
+        }
+        .text-gray span:last-child{
+            color: #f21e37
+        }
+        .progress{
+            position: relative;
+            top:50%;
+            transform:translateY(-50%);
+        }
+        
+
+        /*.table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+            height: 40px;
+            text-align: left;
+        }*/
+        .table-bordered > thead > tr > th, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > tbody > tr > td, .table-bordered > tfoot > tr > td{
+            border: 1px solid #ffffff;
+            border-bottom: 1px solid #f1f1f1;
+        }
+        .table-bordered{
+            border: 1px solid #ffffff;
+            border-bottom: 1px solid #f1f1f1;
+        }
+    </style>
+    <div class="wrapper wrapper-content" style="padding-bottom: 40px;">
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="item"><span>用户总数</span><span> 45128人</span></div>
+                        <div class="item text-gray">
+                            <div class="fl"><span>周同比</span><span> -60%</span></div>
+                            <div class="fl"><span>日同比</span><span> -60%</span></div>
+                        </div>
+                        <div class="item"><span>日增长</span><span> 56人</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="item"><span>文章总数</span><span> 158245篇</span></div>
+                        <div class="item text-gray">
+                            <div class="fl"><span>周同比</span><span> -60%</span></div>
+                            <div class="fl"><span>日同比</span><span> -60%</span></div>
+                        </div>
+                        <div class="item"><span>周增长</span><span> 4篇</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="item"><span>工具总数</span><span> 5684个</span></div>
+                        <div class="item text-gray">
+                            <div class="fl"><span>周同比</span><span> -60%</span></div>
+                            <div class="fl"><span>日同比</span><span> -60%</span></div>
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <!-- <div id="main" style="width: 360px;height:200px;margin: 0 auto;"></div> -->
+                        </div>
+                        <div class="item"><span>转化率</span><span> 56%</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="ibox">
+                    <div class="ibox-content">
+                        <div class="item"><span>总销售额</span><span> ￥58684</span></div>                        
+                        <div class="item">
+                            <div class="progress progress-striped active">
+                                <div style="width: 56%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="56" role="progressbar" class="progress-bar progress-bar-success">56%
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item text-gray">
+                            <div class="fl"><span>周同比</span><span> -60%</span></div>
+                            <div class="fl"><span>日同比</span><span> -60%</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-sm-7" style="padding-right:0px;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>文章累计增长</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="echarts" id="echarts-bar-chart">
+                            
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main" style="width: 920px;height: 350px;margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>浏览排名</h5>
+                    </div>
+                    <div class="ibox-content" style="padding: 0px 20px; padding-bottom: 5px;">
+                        <!-- table-hover -->
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>名称</th>
+                                    <th>数量</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="70%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-7" style="padding-right:0px;">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>文章热门搜索</h5>
+                    </div>
+                    <div class="ibox-content" style="padding: 0px 20px; padding-bottom: 5px;">
+                        <!-- table-hover -->
+                        <table class="table table-bordered ">
+                            <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>关键词</th>
+                                    <th>用户数</th>
+                                    <th>涨幅</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>
+                                <tr>
+                                    <td width="10%">1</td>
+                                    <td width="50%">智利原瓶进口红酒 750ml *6瓶整箱装</td>
+                                    <td width="20%">458245</td>
+                                    <td width="20%">+52</td>
+                                </tr>                                
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>文章类别占比</h5>
+                    </div>
+                    <div class="ibox-content">
+
+                        <div class="echarts" id="echarts-bar-chart">
+                            
+                            <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+                            <div id="main3" style="width: 600px;height: 350px;margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+{/block}
+
+
+
+{block name="script"}
+<script>
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        backgroundColor: '#ffffff',
+        color: ['#3398DB'],
+        grid: {
+            left: '5%',  
+            right: '2%',  
+            bottom: '15%', 
+            top: '5%', 
+            show: false 
+        },
+        xAxis: {
+            axisLine:{
+                show: false //y轴线消失
+            },
+            axisTick: {
+                show: false
+            },
+            splitLine:{
+        　　　　show: false
+        　　},
+            type: 'category',
+            data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+
+        },
+        yAxis: {
+            type: 'value',
+            axisLine:{
+                show: false //y轴线消失
+            },
+           // 取消坐标轴刻度线
+            axisTick: {
+                show: false
+            },
+            // 取消网格线
+            splitLine:{
+        　　　　show: false
+        　　},
+            // 取消显示坐标值
+            axisLabel: {
+                show: true
+            },
+        },
+        series: [{
+            data: [120, 200, 150, 80, 70, 110, 130, 120, 200, 150, 80, 70],
+            type: 'bar',
+            barWidth : 30,//柱图宽度
+            showBackground: true,
+            backgroundStyle: {
+                color: 'rgba(220, 220, 220, 0.8)'
+            }
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+
+
+
+   
+    // 基于准备好的dom，初始化echarts实例
+    var myChart3 = echarts.init(document.getElementById('main3'));
+
+    // 指定图表的配置项和数据
+    var option3 = {
+        
+        tooltip: {
+            trigger: 'item',
+            formatter: '{a} <br/>{b}: {c} ({d}%)'
+        },
+        legend: {
+            left: 'center',
+            bottom: '10%',
+            data: ['手机', '相机', '耳机', '手表', '音箱']
+        },
+        series: [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius: ['55%', '70%'],
+                center: ["50%", "40%"], 
+                color:['#409eff','#ffbc00','#d36eb0','#0acf97','#fa5c7c'],
+                avoidLabelOverlap: false,
+                label: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    label: {
+                        show: true,
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                },
+                labelLine: {
+                    show: false
+                },
+                data: [
+                    {value: 335, name: '手机'},
+                    {value: 310, name: '相机'},
+                    {value: 234, name: '耳机'},
+                    {value: 135, name: '手表'},
+                    {value: 548, name: '音箱'}
+                ]
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart3.setOption(option3);
+</script>
+
+
+{/block}

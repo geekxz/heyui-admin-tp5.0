@@ -1,0 +1,270 @@
+{extend name="public/base" /}
+{block name="sidebar"}{/block}
+{block name="style"}{/block}
+{block name="body"}
+<div class="wrapper wrapper-content">
+    <!-- Panel Other -->
+    <div class="ibox float-e-margins">
+        <div class="ibox-title">            
+            <div class="row">
+                <p class="gk-list-title">参数配置</p>
+            </div>
+        </div>
+        <div class="row"> 
+            <div class="col-lg-12">
+                <div class="ibox float-e-margins" style="background-color: #fff;padding-bottom: 50px;padding-top: 10px;min-height: 880px;">
+					<div class="fly-panel fly-panel-user">
+						<div class="tpt—admin">
+							<style type="text/css">
+								.tpt_sels a{
+									padding-right:15px;
+									position:relative
+								}
+								.tpt_sels a{
+									padding:0 20px 0 8px;
+									color:#3B6268;
+									background:#FFFFBA;
+									border:1px #F8E06E solid;
+									margin-right:5px;
+									margin-bottom:5px;
+									font-size:14px;
+									height:26px;
+									line-height:26px;
+									display:block;
+									float:left
+								}
+								.tpt_sels a em{
+									width: 12px;
+									height: 12px;
+									font-style: normal;
+									display: block;
+									position: absolute;
+									top: 7px;
+									right: 4px;
+									z-index: 2;
+									background: url(__IMG__/sx.png) no-repeat 0 0;
+								}
+								.layui-form-label{
+									width: 120px;
+								}
+								.layui-tab{
+									margin: 0px 15px;
+								}
+								.layui-tab-title .layui-this{
+									background-color: #4165d7;
+									color: #fff;
+									letter-spacing: 2px;
+									padding: 0px 20px;
+									/*border: 1px solid #4165d7*/
+								}
+								.layui-form-label{
+									text-align: left;
+								}
+							</style>
+							<form class="layui-form">
+							    <div class="layui-tab">
+							        <ul class="layui-tab-title">
+							            <li class="layui-this">
+							                基本设置
+							            </li>
+							            <li>
+							                小程序配置
+							            </li>
+							        </ul>
+							        <div class="layui-tab-content" style="padding: 30px 0 0 0;">
+							        
+							            <div class="layui-tab-item layui-show">
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        网站标题
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_title" value="{:config('web.web_title')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        网站域名
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_com" value="{:config('web.web_com')}" placeholder="后面不要加斜杠/"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        作者
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_author" value="{:config('web.web_author')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        QQ
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_qq" value="{:config('web.web_qq')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        网站备案号
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_icp" value="{:config('web.web_icp')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        关键词
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="web_key" value="{:config('web.web_key')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 60%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label">
+							                        描述
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <textarea name="web_des" placeholder="请输入内容" class="layui-textarea" style="width: 70%;float: left;">{:config('web.web_des')}
+							                        </textarea>
+							                    </div>
+							                </div>
+							                <div class="tpt_item">
+							                    <input type="hidden" name="web_tag" value="{:config('web.web_tag')}">
+							                    <div id="tpt_sel" class="tpt_sels" style="margin-top: 20px;">
+							                        <div class="layui-form-item" style="margin-bottom: 10px;">
+							                            <label class="layui-form-label">
+							                                常用标签
+							                            </label>
+							                            <div class="layui-input-block">
+							                                <input id="tpt_input" type="text" value="" autocomplete="off" class="layui-input"
+							                                style="width: 400px;float: left;margin-right: 20px;">
+							                                <button class="layui-btn" id="tpt_btn" type="button" style="background: #4165d7;">
+							                                    添加标签
+							                                </button>
+							                            </div>
+							                        </div>
+							                        <span style="margin-bottom: 5px;float: left;margin-left: 120px;margin-bottom: 10px;">
+							                            {if condition="config('web.web_tag') neq ''"}
+							                            <?php $arr=explode( ',', config( 'web.web_tag'));foreach ($arr as $k=>
+							                                $v){echo "
+							                                <a href='javascript:;' style='height: 30px;line-height: 30px;'>
+							                                    $v
+							                                    <em>
+							                                    </em>
+							                                </a>
+							                                ";}?>{/if}
+							                        </span>
+							                    </div>
+							                </div>
+							            </div>
+
+										<div class="layui-tab-item">
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label" style="width: 150px;float: left;">
+							                        小程序appid
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="app_id" value="{:config('wx.app_id')}" placeholder="请输入小程序app_id"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label" style="width: 150px;float: left;">
+							                        小程序appsecret
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="app_secret" value="{:config('wx.app_secret')}" placeholder="请输入小程序app_id"
+							                        autocomplete="off" class="layui-input" style="width: 30%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label" style="width: 150px;float: left;">
+							                        微信使用code换取用户openid及session_key的url
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="login_url" value="{:config('wx.login_url')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 60%;float: left;">
+							                    </div>
+							                </div>
+							                <div class="layui-form-item">
+							                    <label class="layui-form-label" style="width: 150px;float: left;">
+							                        微信获取access_token的url
+							                    </label>
+							                    <div class="layui-input-block">
+							                        <input type="text" name="access_token_url" value="{:config('wx.access_token_url')}" placeholder="请输入内容"
+							                        autocomplete="off" class="layui-input" style="width: 60%;float: left;">
+							                    </div>
+							                </div>
+										</div>
+
+							        </div>
+							    </div>
+							    <div class="layui-form-item" style="margin-bottom: 50px;margin-top: 40px;margin-left: 10px">
+							        <div class="layui-input-block">
+							            <button class="layui-btn" lay-submit="" lay-filter="config_add">
+							                立即提交
+							            </button>
+							        </div>
+							    </div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+    </div>
+</div>
+
+{/block}
+{block name="script"}
+<script type="text/javascript" src="__JS__/input.js"></script>
+<script type="text/javascript">
+	layui.use(['form', 'element'],
+	function() {
+	    var form = layui.form,
+	    element = layui.element,
+	    jq = layui.jquery;
+
+	    form.on('submit(config_add)',
+	    function(data) {
+	        loading = layer.load(2, {
+	            shade: [0.2, '#000']
+	        });
+	        var param = data.field;
+	        jq.post('{:url("system/addparam")}', param,
+	        function(data) {
+	            if (data.code == 200) {
+	                layer.close(loading);
+	                layer.msg(data.msg, {
+	                    icon: 1,
+	                    time: 1000
+	                },
+	                function() {
+	                    location.href = '{:url("system/param")}';
+	                });
+	            } else {
+	                layer.close(loading);
+	                layer.msg(data.msg, {
+	                    icon: 2,
+	                    anim: 6,
+	                    time: 1000
+	                });
+	            }
+	        });
+	        return false;
+	    });
+
+	})
+</script>
+
+{/block}
