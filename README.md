@@ -46,7 +46,7 @@
 
   - 后台demo地址：http://admin.geekxz.com
   - Github仓库：https://github.com/geekxz/heyui-admin-tp5.0.git
-  - Gitee仓库：https://gitee.com/geek-club/heyui-admin-tp5.0.git
+  - Gitee仓库：https://gitee.com/geekClub/heyui-admin-tp5.0.git
 
 #### 效果展示
 
