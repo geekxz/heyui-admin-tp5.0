@@ -99,14 +99,14 @@ function testClick(){
                     <td>./runtime</td>
                     <td>可写</td>
                     <td>
-                        <?php if (is_writable('../Runtime')): ?>
+                        <?php if (is_writable('../runtime')): ?>
                             可写
                         <?php else: ?>
                             不可写
                         <?php endif ?>
                     </td>
                     <td class="<?php if(is_writable('../runtime'))echo 'yes'; ?>">
-                        <?php if (is_writable('../Runtime')): ?>
+                        <?php if (is_writable('../runtime')): ?>
                             √
                         <?php else: ?>
                             ×
